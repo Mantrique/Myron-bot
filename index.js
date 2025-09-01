@@ -10,7 +10,7 @@ const API_KEY = process.env.API_KEY;
 const API_SECRET = process.env.API_SECRET;
 const BASE_URL = "https://fapi.binance.com";
 const SYMBOL = "NEARUSDT";
-const LEVERAGE = 5;
+const LEVERAGE = 10;
 
 // === Binance методы ===
 function getSignature(query) {
@@ -121,8 +121,8 @@ async function openPosition(direction) {
   });
 
   const takeProfitPrice = direction === "long"
-    ? (price * 1.01).toFixed(2)
-    : (price * 0.99).toFixed(2);
+    ? (price * 1.005).toFixed(2)
+    : (price * 0.995).toFixed(2);
 
   await signedRequest("POST", "/fapi/v1/order", {
     symbol: SYMBOL,

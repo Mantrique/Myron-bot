@@ -98,7 +98,7 @@ async function openPosition(direction) {
   const side = direction === "long" ? "BUY" : "SELL";
   const stopSide = direction === "long" ? "SELL" : "BUY";
 
-  console.log(`[+] Открываем ${direction.toUpperCase()} на ${qty} SOL...`);
+  console.log(`[+] Открываем ${direction.toUpperCase()} на ${qty} NEAR...`);
   await signedRequest("POST", "/fapi/v1/order", {
     symbol: SYMBOL,
     side,

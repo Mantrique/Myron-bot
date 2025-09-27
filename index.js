@@ -106,9 +106,9 @@ async function openPosition(direction) {
     quantity: qty,
   });
 
-  const stopPrice = direction === "long"
-    ? (price * 0.80).toFixed(2)
-    : (price * 1.20).toFixed(2);
+  const stopLossPrice = direction === "long"
+    ? +(price - price * 0.03).toFixed(3)  
+    : +(price + price * 0.03).toFixed(3); 
 
   await signedRequest("POST", "/fapi/v1/order", {
     symbol: SYMBOL,

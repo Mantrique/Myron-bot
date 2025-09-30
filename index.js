@@ -106,9 +106,9 @@ async function openPosition(direction) {
     quantity: qty,
   });
 
-  const stopLossPrice = direction === "long"
-    ? +(price - price * 0.03).toFixed(3)  
-    : +(price + price * 0.03).toFixed(3); 
+  const stopPrice = direction === "long"
+    ? (price * 0.97).toFixed(2)
+    : (price * 1.03).toFixed(2);
 
   await signedRequest("POST", "/fapi/v1/order", {
     symbol: SYMBOL,
@@ -121,8 +121,8 @@ async function openPosition(direction) {
   });
 
   const takeProfitPrice = direction === "long"
-    ? +(price + price * 0.01).toFixed(3)
-    : +(price - price * 0.01).toFixed(3);
+    ? (price * 1.01).toFixed(2)
+    : (price * 0.99).toFixed(2);
 
   await signedRequest("POST", "/fapi/v1/order", {
     symbol: SYMBOL,
